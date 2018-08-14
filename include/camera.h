@@ -4,12 +4,14 @@
 
 namespace vo
 {
+
 // pinhole RGB-D camera model
 class Camera
 {
 public:
     Camera();
     Camera(float fx, float fy, float cx, float cy, float depth_scale=0);
+    typedef std::shared_ptr<Camera> Ptr;
 
     // coordinate transform: world, camera, pixel
     Eigen::Vector3d world2camera(const Eigen::Vector3d& p_w, const Sophus::SE3& T_c_w);
@@ -27,6 +29,7 @@ private:
     float cy_;
     float depth_scale_;
 };
+
 }
 
 #endif // CAMERA_H
